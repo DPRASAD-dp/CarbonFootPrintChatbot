@@ -1,0 +1,8 @@
+pandas
+langchain
+ibm_watson_machine_learning
+ibm_watsonx_ai
+faiss_cpu
+sentence_transformers
+docx2txt
+chardet
