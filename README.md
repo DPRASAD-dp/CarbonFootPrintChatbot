@@ -62,6 +62,11 @@ else:
     print(f"Initialization failed: {message}")
 ```
 
+##Streamlit interface implemetation
+```
+   streamlit run carbonbuddy.py
+   ```
+
 ## File Descriptions
 
 - `main.py`: The main script containing all the logic for the Q&A system
