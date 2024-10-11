@@ -61,10 +61,10 @@ def setup_watsonx():
     try:
         credentials = Credentials(
             url="https://us-south.ml.cloud.ibm.com",
-            api_key="nnDUcyqIzastKdI5PNJkExOMrteBiCLwhfmIewg_Xyfc"
+            api_key="enter your api key here"
         )
 
-        project_id = os.environ.get("PROJECT_ID", "b1fb34d3-73f7-49da-b1b0-883cde47e6af")
+        project_id = os.environ.get("PROJECT_ID", "enter your project id here")
 
         model_id = ModelTypes.GRANITE_13B_CHAT_V2
         parameters = {
