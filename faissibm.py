@@ -61,17 +61,17 @@ def setup_watsonx():
     try:
         credentials = Credentials(
             url="https://us-south.ml.cloud.ibm.com",
-            api_key="Enter your api key here"
+            api_key="nnDUcyqIzastKdI5PNJkExOMrteBiCLwhfmIewg_Xyfc"
         )
 
-        project_id = os.environ.get("PROJECT_ID", "Enter your project ID here")
+        project_id = os.environ.get("PROJECT_ID", "b1fb34d3-73f7-49da-b1b0-883cde47e6af")
 
         model_id = ModelTypes.GRANITE_13B_CHAT_V2
         parameters = {
             GenParams.DECODING_METHOD: DecodingMethods.GREEDY,
             GenParams.MIN_NEW_TOKENS: 1,
             GenParams.MAX_NEW_TOKENS: 500,
-            GenParams.STOP_SEQUENCES: ["Question:","Report:","Explanation:","\n\n"]
+            GenParams.STOP_SEQUENCES: ["Question:","Report:","Explanation:","Question:"]
         }
         watsonx_llm = WatsonxLLM(
             model_id=model_id.value,
@@ -137,7 +137,7 @@ Use the following context, report, and your general knowledge to answer the ques
 Always consider the report content when formulating your answer, even for general questions.
 If the context is relevant, incorporate it into your answer.
 If neither the context nor the report contain relevant information, answer based on your own knowledge.
-Provide a concise and focused answer in a single paragraph without adding extra questions or unrelated information.
+Provide a concise and focused answer without adding extra questions or unrelated information.
 
 Context: {context}
 Report: {report}
@@ -149,10 +149,14 @@ Answer:"""
         
         response = llm_chain.run(context=context, question=question, report=report_content)
         
-        # Post-process the response to ensure it's a single paragraph
-        #response = response.strip()  # Remove leading/trailing whitespace
-        response = response.split('\n\n')[0]  # Take only the first paragraph if multiple exist
-        #response = response.replace('\n', ' ')  # Replace any newlines within the paragraph with spaces
+        # Post-process the response
+        response = response.strip()  # Remove leading/trailing whitespace
+        
+        # Check if the last word matches any of the specified keywords
+        keywords = ["Question:", "Report:", "Explanation:", "Question:"]
+        words = response.split()
+        if words and words[-1] in keywords:
+            response = " ".join(words[:-1])  # Remove the last word
         
         return response
     except Exception as e:
