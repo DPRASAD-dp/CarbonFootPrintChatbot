@@ -6,3 +6,4 @@ faiss_cpu
 sentence_transformers
 docx2txt
 chardet
+streamlit
