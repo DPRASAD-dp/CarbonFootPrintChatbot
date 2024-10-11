@@ -62,7 +62,8 @@ else:
     print(f"Initialization failed: {message}")
 ```
 
-##Streamlit interface implemetation
+## Streamlit interface implemetation
+
 ```
    streamlit run carbonbuddy.py
    ```
