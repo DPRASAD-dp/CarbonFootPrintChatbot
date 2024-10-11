@@ -45,7 +45,7 @@ This script is designed to be imported and used by a web interface. The main com
 - `initialize_system()`: Sets up the vector database, WatsonX, and loads the report
 - `process_question(question)`: Processes a user's question and returns an answer
 
-To use in your application:
+If you want to use the faissibm.py code in your application:
 
 ```python
 from your_script_name import initialize_system, process_question
@@ -70,7 +70,8 @@ else:
 
 ## File Descriptions
 
-- `main.py`: The main script containing all the logic for the Q&A system
+- `faissibm.py`: The main script containing all the logic for the Q&A system
+- `carbonbuddy.py`: This script is used to create a streamlit interface
 - `carbon_questionanswerpairs.csv`: CSV file containing pre-existing Q&A pairs
 - `carbon_footprint_report.docx`: DOCX file containing the carbon footprint report
 - `requirements.txt`: List of Python package dependencies
